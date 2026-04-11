@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,11 @@ Route::middleware([
 });
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
+//All Categories Routes
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('/add/category', [CategoryController::class, 'create'])->name('add.category');
+Route::post('/store/category', [CategoryController::class, 'store'])->name('store.category');
+Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/update/category/{id}', [CategoryController::class, 'update'])->name('update.category');
+Route::get('/delete/category/{id}', [CategoryController::class, 'destroy'])->name('delete.category');
