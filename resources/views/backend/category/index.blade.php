@@ -72,7 +72,7 @@
                       </table>
                       
                       <div class="pagination justify-content-center" style="margin-top: 20px;">
-                        {{ $categories->links('pagination::bootstrap-4') }}
+                        {{ $categories->links('pagination-links') }}
                       </div>  
 
                     </div>
