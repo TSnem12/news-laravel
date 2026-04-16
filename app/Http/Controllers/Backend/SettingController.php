@@ -96,5 +96,54 @@ class SettingController extends Controller
     }
 
 
+    //Prayer Settings
+
+    public function LivetvSetting() {
+        $livetv = DB::table('livetvs')->first();
+        return view('backend.setting.livetv', compact('livetv'));
+
+    }
+
+
+    public function UpdateLivetv(Request $request, $id) {
+
+        DB::table('livetvs')->where('id', $id)->update([
+            'embed_code' => $request->embed_code,
+        ]);
+        
+        $notification = array (
+            'message' => 'LiveTv Settings Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('livetv.setting')->with($notification);
+
+    }
+
+
+    public function ActiveLivetv($id) {
+        DB::table('livetvs')->where('id', $id)->update(['status'=>1]);
+
+        $notification = array (
+            'message' => 'LiveTv Activated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
+     public function DeActiveLivetv($id) {
+        DB::table('livetvs')->where('id', $id)->update(['status'=>0]);
+
+        $notification = array (
+            'message' => 'LiveTv DeActivated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
 
 }
