@@ -96,7 +96,7 @@ class SettingController extends Controller
     }
 
 
-    //Prayer Settings
+    //Livetv Settings
 
     public function LivetvSetting() {
         $livetv = DB::table('livetvs')->first();
@@ -138,6 +138,55 @@ class SettingController extends Controller
 
         $notification = array (
             'message' => 'LiveTv DeActivated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
+    //Notice Settings
+
+    public function NoticeSetting() {
+        $notice = DB::table('notices')->first();
+        return view('backend.setting.notice', compact('notice'));
+
+    }
+
+
+    public function UpdateNotice(Request $request, $id) {
+
+        DB::table('notices')->where('id', $id)->update([
+            'notice' => $request->notice,
+        ]);
+        
+        $notification = array (
+            'message' => 'Notice Settings Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('notice.setting')->with($notification);
+
+    }
+
+
+    public function ActiveNotice($id) {
+        DB::table('notices')->where('id', $id)->update(['status'=>1]);
+
+        $notification = array (
+            'message' => 'Notice Activated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
+     public function DeActiveNotice($id) {
+        DB::table('notices')->where('id', $id)->update(['status'=>0]);
+
+        $notification = array (
+            'message' => 'Notice DeActivated Successfully',
             'alert-type' => 'success'
         );
 

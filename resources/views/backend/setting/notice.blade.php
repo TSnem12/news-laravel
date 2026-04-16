@@ -30,33 +30,33 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Livetv Settings</h4>
+                    <h4 class="card-title">Update Notice Settings</h4>
 
                     <div class="template-demo">
-                        @if ($livetv->status == 1)
-                            <a href="{{ route('deactive.livetv', $livetv->id) }}" class="btn btn-danger">De Active</a>
+                        @if ($notice->status == 1)
+                            <a href="{{ route('deactive.notice', $notice->id) }}" class="btn btn-danger">De Active</a>
                         @else
-                            <a href="{{ route('active.livetv', $livetv->id) }}" class="btn btn-primary">Active</a>
+                            <a href="{{ route('active.notice', $notice->id) }}" class="btn btn-primary">Active</a>
                         @endif
                     </div>
 
-                    @if ($livetv->status == 1)
-                        <small class="text-success">Now Livetv Is Active </small>
+                    @if ($notice->status == 1)
+                        <small class="text-success">Now Notice Is Active </small>
                     @else
-                        <small class="text-danger">Now Livetv Is DeActive </small>
+                        <small class="text-danger">Now Notice Is DeActive </small>
                     @endif
 
                     <br><br>
 
 
-                    <form class="forms-sample" method="POST" action="{{ route('update.livetv', $livetv->id) }}">
+                    <form class="forms-sample" method="POST" action="{{ route('update.notice', $notice->id) }}">
                         @csrf
 
                         <div class="form-group">
-                            <label for="exampleTextarea1">Embed Code</label>
-                            <textarea class="form-control" name="embed_code" id="summernote">
+                            <label for="exampleTextarea1">Notice</label>
+                            <textarea class="form-control" name="notice" id="summernote">
                                 
-                                {{ $livetv->embed_code }}
+                                {{ $notice->notice }}
 
                             </textarea>
                         </div>
