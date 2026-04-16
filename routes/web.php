@@ -88,6 +88,9 @@ Route::get('/delete/post/{id}', [PostController::class, 'delete'])->name('delete
 Route::get('/social/setting/', [SettingController::class, 'SocialSetting'])->name('social.setting');
 Route::post('/update/social/{id}', [SettingController::class, 'UpdateSocial'])->name('update.social');
 
+Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
+Route::post('/update/seo/{id}', [SettingController::class, 'UpdateSeo'])->name('update.seo');
 
+ 
 
 
