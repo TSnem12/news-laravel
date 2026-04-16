@@ -142,6 +142,8 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}">LiveTv
                             Settings</a></li>
 
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}">Notice
+                            Settings</a></li>
 
 
                 </ul>
