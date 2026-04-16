@@ -104,6 +104,13 @@ Route::post('/update/notice/{id}', [SettingController::class, 'UpdateNotice'])->
 Route::get('/active/notice/{id}', [SettingController::class, 'ActiveNotice'])->name('active.notice');
 Route::get('/deactive/notice/{id}', [SettingController::class, 'DeActiveNotice'])->name('deactive.notice');
  
+Route::get('/website/setting', [SettingController::class, 'WebsiteSetting'])->name('all.website');
+Route::get('/add/website', [SettingController::class, 'AddWebsiteSetting'])->name('add.website');
+Route::post('/store/website', [SettingController::class, 'StoreWebsite'])->name('store.website');
+Route::get('/edit/website/{id}', [SettingController::class, 'EditWebsite'])->name('edit.website');
+Route::post('/update/website/{id}', [SettingController::class, 'UpdateWebsite'])->name('update.website');
+Route::get('/delete/website/{id}', [SettingController::class, 'DeleteWebsite'])->name('delete.website');
+
  
 
 
