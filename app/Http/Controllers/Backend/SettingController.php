@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
+    //Social Settings
+
     public function SocialSetting() {
         $socials = DB::table('socials')->first();
         return view('backend.setting.social', compact('socials'));
@@ -34,6 +36,7 @@ class SettingController extends Controller
 
     }
 
+    //Seo Settings
 
     public function SeoSetting() {
         $seo = DB::table('seos')->first();
@@ -63,7 +66,34 @@ class SettingController extends Controller
 
     }
 
+    //Prayer Settings
 
+    public function PrayerSetting() {
+        $prayer = DB::table('prayers')->first();
+        return view('backend.setting.prayer', compact('prayer'));
+
+    }
+
+
+    public function UpdatePrayer(Request $request, $id) {
+
+        DB::table('prayers')->where('id', $id)->update([
+            'fajr' => $request->fajr,
+            'dhuhr' => $request->dhuhr,
+            'asr' => $request->asr,
+            'maghrib' => $request->maghrib,
+            'isha' => $request->isha,
+            'jummah' => $request->google_analytics,
+        ]);
+        
+        $notification = array (
+            'message' => 'Prayer Settings Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('prayer.setting')->with($notification);
+
+    }
 
 
 

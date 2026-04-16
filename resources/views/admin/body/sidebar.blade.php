@@ -137,6 +137,10 @@
                             Settings</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('seo.setting') }}">Seo Settings</a>
                     </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}">Prayer
+                            Settings</a></li>
+
+
 
                 </ul>
             </div>

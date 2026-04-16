@@ -91,6 +91,9 @@ Route::post('/update/social/{id}', [SettingController::class, 'UpdateSocial'])->
 Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
 Route::post('/update/seo/{id}', [SettingController::class, 'UpdateSeo'])->name('update.seo');
 
+Route::get('/prayer/setting/', [SettingController::class, 'PrayerSetting'])->name('prayer.setting');
+Route::post('/update/prayer/{id}', [SettingController::class, 'UpdatePrayer'])->name('update.prayer');
+
  
 
 
