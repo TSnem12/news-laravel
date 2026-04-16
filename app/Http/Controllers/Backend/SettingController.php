@@ -182,7 +182,7 @@ class SettingController extends Controller
     }
 
 
-     public function DeActiveNotice($id) {
+    public function DeActiveNotice($id) {
         DB::table('notices')->where('id', $id)->update(['status'=>0]);
 
         $notification = array (
@@ -191,6 +191,68 @@ class SettingController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+
+    //Website Settings
+
+    public function WebsiteSetting() {
+        $websites = DB::table('websites')->orderBy('id', 'desc')->paginate(3);
+        return view('backend.website.index', compact('websites'));
+
+    }
+
+    public function AddWebsiteSetting() {
+        return view('backend.website.create');
+    }
+
+
+    public function StoreWebsite(Request $request) {
+
+        DB::table('websites')->insert([
+            'website_name' => $request->website_name,
+            'website_link' => $request->website_link,
+        ]);
+        
+        $notification = array (
+            'message' => 'Website links Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.website')->with($notification);
+
+    }
+
+
+    public function EditWebsite($id) {
+        $website = DB::table('websites')->where('id', $id)->first();
+        return view('backend.website.edit', compact('website'));
+    }
+
+    public function UpdateWebsite(Request $request, $id) {
+
+        DB::table('websites')->where('id', $id)->update([
+            'website_name' => $request->website_name,
+            'website_link' => $request->website_link,
+        ]);
+
+        $notification = array(
+            'message' => 'Website Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.website')->with($notification);
+    }
+
+    public function DeleteWebsite($id) {
+        DB::table('websites')->where('id', $id)->delete();
+
+        $notification = array(
+            'message' => 'Website Link Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.website')->with($notification);
     }
 
 
