@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,12 @@ Route::post('/store/post', [PostController::class, 'store'])->name('store.post')
 Route::get('/edit/post/{id}', [PostController::class, 'edit'])->name('edit.post');
 Route::post('/update/post/{id}', [PostController::class, 'update'])->name('update.post');
 Route::get('/delete/post/{id}', [PostController::class, 'delete'])->name('delete.post');
+
+
+// Settings Routes
+Route::get('/social/setting/', [SettingController::class, 'SocialSetting'])->name('social.setting');
+Route::post('/update/social/{id}', [SettingController::class, 'UpdateSocial'])->name('update.social');
+
+
+
+
