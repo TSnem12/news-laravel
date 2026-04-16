@@ -139,6 +139,8 @@
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}">Prayer
                             Settings</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}">LiveTv
+                            Settings</a></li>
 
 
 
