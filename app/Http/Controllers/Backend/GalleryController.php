@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 class GalleryController extends Controller
 {
 
+    //Photos Functions
+
     public function PhotoGallery()
     {
         $photos = DB::table('photos')->orderBy('id', 'desc')->paginate(5);
@@ -19,7 +21,7 @@ class GalleryController extends Controller
 
     public function AddPhoto()
     {
-        return view('backend.gallery.create');
+        return view('backend.gallery.create_photo');
     }
 
 
@@ -59,7 +61,7 @@ class GalleryController extends Controller
     public function EditPhoto($id)
     {
         $photo = DB::table('photos')->where('id', $id)->first();
-        return view('backend.gallery.edit', compact('photo'));
+        return view('backend.gallery.edit_photo', compact('photo'));
     }
 
     public function UpdatePhoto(Request $request, $id)
@@ -103,5 +105,81 @@ class GalleryController extends Controller
         );
 
         return redirect()->route('photo.gallery')->with($notification);
+    }
+
+
+    //Videos Functions
+
+    public function VideoGallery()
+    {
+        $videos = DB::table('videos')->orderBy('id', 'desc')->paginate(5);
+        return view('backend.gallery.videos', compact('videos'));
+    }
+
+
+    public function AddVideo()
+    {
+        return view('backend.gallery.create_video');
+    }
+
+
+
+    public function StoreVideo(Request $request)
+    {
+
+        $request->validate([
+            'title' => 'required',
+            'embed_code' => 'required',
+
+        ]);
+
+        DB::table('videos')->insert([
+            'title' => $request->title,
+            'type' => $request->type,
+            'embed_code' => $request->embed_code
+        ]);
+
+        $notification = array(
+            'message' => 'Video Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->route('video.gallery')->with($notification);
+    }
+
+
+    public function EditVideo($id)
+    {
+        $video = DB::table('videos')->where('id', $id)->first();
+        return view('backend.gallery.edit_video', compact('video'));
+    }
+
+    public function UpdateVideo(Request $request, $id)
+    {
+
+        DB::table('videos')->where('id', $id)->update([
+            'title' => $request->title,
+            'embed_code' => $request->embed_code,
+            'type' => $request->type
+        ]);
+
+        $notification = array(
+            'message' => 'Video Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('video.gallery')->with($notification);
+    }
+
+    public function DeleteVideo($id)
+    {
+        DB::table('videos')->where('id', $id)->delete();
+
+        $notification = array(
+            'message' => 'Video Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('video.gallery')->with($notification);
     }
 }
