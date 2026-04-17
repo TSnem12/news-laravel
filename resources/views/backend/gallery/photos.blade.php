@@ -33,14 +33,15 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Website Setting Links </h4>
+                    <h4 class="card-title">Photo Gallery </h4>
 
 
                     <div class="template-demo">
-                        <a href="{{ route('add.website') }}"><button type="button"
-                                class="btn btn-primary btn-fw"style="float: right;">Add Website Link</button></a>
+                        <a href="{{ route('add.photo') }}"><button type="button" class="btn btn-primary btn-fw"
+                                style="float: right;">Add Photo</button></a>
                     </div>
-                    <br> <br>
+
+                    <br><br>
 
 
                     <div class="table-responsive">
@@ -48,24 +49,33 @@
                             <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Website Name </th>
-                                    <th> Website Link </th>
+                                    <th> Photo Title </th>
+                                    <th> Photo Image </th>
+                                    <th> Type </th>
                                     <th> Action </th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 @php($i = 1)
-                                @foreach ($websites as $website)
+                                @foreach ($photos as $photo)
                                     <tr>
                                         <td> {{ $i++ }} </td>
-                                        <td> {{ $website->website_name }} </td>
+                                        <td> {{ $photo->title }} </td>
+                                        <td> <img src="{{ asset('images/photo_gallery/' . $photo->photo) }}"
+                                                style="width: 50px; height: 50px;"> </td>
 
-                                        <td>{{ $website->website_link }} </td>
                                         <td>
-                                            <a href="{{ route('edit.website', $website->id) }}"
-                                                class="btn btn-info">Edit</a>
-                                            <a href="{{ route('delete.website', $website->id) }}"
+                                            @if ($photo->type == 1)
+                                                <span class="badge badge-success">Big Photo</span>
+                                            @else
+                                                <span class="badge badge-info">Small Photo</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ route('edit.photo', $photo->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="{{ route('delete.photo', $photo->id) }}"
                                                 onclick="return confirm('Are you sure to delete')"
                                                 class="btn btn-danger">Delete</a>
 
@@ -75,9 +85,11 @@
 
                             </tbody>
                         </table>
+
                         <div class="pagination justify-content-center" style="margin-top: 20px;">
-                            {{ $websites->links('pagination-links') }}
+                            {{ $photos->links('pagination-links') }}
                         </div>
+
                     </div>
                 </div>
             </div>
