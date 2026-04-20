@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\GalleryController;
 
+use App\Http\Controllers\Frontend\ExtraController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +24,7 @@ use App\Http\Controllers\Backend\GalleryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.home');
 });
 
 Route::middleware([
@@ -127,3 +129,10 @@ Route::post('/store/video', [GalleryController::class, 'StoreVideo'])->name('sto
 Route::get('/edit/video/{id}', [GalleryController::class, 'EditVideo'])->name('edit.video');
 Route::post('/update/video/{id}', [GalleryController::class, 'UpdateVideo'])->name('update.video');
 Route::get('/delete/video/{id}', [GalleryController::class, 'DeleteVideo'])->name('delete.video');
+
+
+
+//Frontend
+
+Route::get('/lang/arabic', [ExtraController::class, 'Arabic'])->name('lang.arabic');
+Route::get('/lang/english', [ExtraController::class, 'English'])->name('lang.english');
