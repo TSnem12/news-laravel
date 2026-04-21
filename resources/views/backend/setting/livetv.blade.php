@@ -56,7 +56,7 @@
                             <label for="exampleTextarea1">Embed Code</label>
                             <textarea class="form-control" name="embed_code" id="summernote">
                                 
-                                {{ $livetv->embed_code }}
+                                {!! $livetv->embed_code !!}
 
                             </textarea>
                         </div>
