@@ -204,7 +204,7 @@
                 @if (session()->get('lang') == 'english')
                     Breaking News :
                 @else
-                    أخبار عاجلة
+                    : أخبار عاجلة
                 @endif
             </div>
 
@@ -235,7 +235,7 @@
                     @if (session()->get('lang') == 'english')
                         Notice :
                     @else
-                        إشعار
+                        : إشعار
                     @endif
                 </div>
 

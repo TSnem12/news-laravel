@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $posts = DB::table('posts')
             ->leftjoin('categories', 'posts.category_id', 'categories.id')
             ->leftjoin('subcategories', 'posts.subcategory_id', 'subcategories.id')
@@ -26,7 +28,8 @@ class PostController extends Controller
 
 
 
-    public function create(){
+    public function create()
+    {
         $categories = DB::table('categories')->get();
         $subcategories = DB::table('subcategories')->get();
         $districts = DB::table('districts')->get();
@@ -34,30 +37,30 @@ class PostController extends Controller
         return view('backend.post.create', compact('categories', 'subcategories', 'districts', 'subdistricts'));
     }
 
-    public function getSubCategory($category_id) {
+    public function getSubCategory($category_id)
+    {
         $subcat = DB::table('subcategories')->where('category_id', $category_id)->get();
         return response()->json($subcat);
-
     }
 
-    public function getSubDistrict($district_id){
+    public function getSubDistrict($district_id)
+    {
         $subdist = DB::table('subdistricts')->where('district_id', $district_id)->get();
         return response()->json($subdist);
-
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $validateData = $request->validate([
             'image' => 'required',
         ]);
-        
+
         $filename = null;
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $file = $request->file('image');
-            $filename = uniqid().'.'.$file->getClientOriginalExtension();
-            Image::make($file)->resize(500, 300)->save(public_path('images/post_image/'.$filename));
-            
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(500, 300)->save(public_path('images/post_image/' . $filename));
         }
 
 
@@ -76,7 +79,7 @@ class PostController extends Controller
             'headline' => $request->headline,
             'first_section' => $request->first_section,
             'first_section_thumbnail' => $request->first_section_thumbnail,
-            'bigthumbnail' => $request->bigthumbnail,
+            'bigthumbnail' => $request->thumbnail,
             'post_date' => date('d-m-Y'),
             'post_month' => date("F"),
             'image' => $filename,
@@ -88,10 +91,10 @@ class PostController extends Controller
         );
 
         return redirect()->route('posts')->with($notification);
-
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $posts = DB::table('posts')->where('id', $id)->first();
         $categories = DB::table('categories')->get();
         $subcategories = DB::table('subcategories')->get();
@@ -101,21 +104,21 @@ class PostController extends Controller
     }
 
 
-    public function update(Request $request, $id){ 
+    public function update(Request $request, $id)
+    {
 
         $filename = $request->old_image;
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
 
-            $old_path = public_path('images/post_image/' .$request->old_image);
-            if(file_exists($old_path)) {
+            $old_path = public_path('images/post_image/' . $request->old_image);
+            if (file_exists($old_path)) {
                 unlink($old_path);
             }
-            
+
             $file = $request->file('image');
-            $filename = uniqid().'.'.$file->getClientOriginalExtension();
-            Image::make($file)->resize(500, 300)->save(public_path('images/post_image/'.$filename));
-       
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(500, 300)->save(public_path('images/post_image/' . $filename));
         }
 
 
@@ -134,7 +137,7 @@ class PostController extends Controller
             'headline' => $request->headline,
             'first_section' => $request->first_section,
             'first_section_thumbnail' => $request->first_section_thumbnail,
-            'bigthumbnail' => $request->bigthumbnail,
+            'bigthumbnail' => $request->thumbnail,
             'image' => $filename,
         ]);
 
@@ -144,18 +147,18 @@ class PostController extends Controller
         );
 
         return redirect()->route('posts')->with($notification);
-
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $posts = DB::table('posts')->where('id', $id)->first();
-        
-        $image_path = public_path('images/post_image/' .$posts->image);
 
-        if(file_exists($image_path)) {
+        $image_path = public_path('images/post_image/' . $posts->image);
+
+        if (file_exists($image_path)) {
             unlink($image_path);
         }
-        
+
         DB::table('posts')->where('id', $id)->delete();
 
         $notification = array(
@@ -165,7 +168,4 @@ class PostController extends Controller
 
         return redirect()->route('posts')->with($notification);
     }
-
-
-
 }
