@@ -152,18 +152,20 @@
                         </div>
                     </div><!-- /.add-close -->
 
-                    <!-- youtube-live-start -->
-                    <div class="cetagory-title-03">Live TV</div>
-                    <div class="photo">
-                        <div class="embed-responsive embed-responsive-16by9 embed-responsive-item"
-                            style="margin-bottom:5px;">
+                    @php
+                        $livetv = DB::table('livetvs')->first();
+                    @endphp
 
-                            <iframe width="729" height="410" src="https://www.youtube.com/embed/S81Kte7X9uk"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div><!-- /.youtube-live-close -->
+                    <!-- youtube-live-start -->
+                    @if ($livetv->status == 1)
+                        <div class="cetagory-title-03">Live TV</div>
+                        <div class="photo">
+                            <div class="embed-responsive embed-responsive-16by9 embed-responsive-item"
+                                style="margin-bottom:5px;">
+                                {!! $livetv->embed_code !!}
+                            </div>
+                        </div><!-- /.youtube-live-close -->
+                    @endif
 
                     <!-- facebook-page-start -->
                     <div class="cetagory-title-03">Facebook </div>
@@ -552,10 +554,88 @@
                             </div>
                         </div>
                     </div>
+
+                    @php
+                        $prayer = DB::table('prayers')->get()->first();
+                    @endphp
+
                     <!-- Namaj Times -->
-                    <div class="cetagory-title-03">Prayer Time </div>
-                    Prayer Times count option here
+                    <div class="cetagory-title-03">
+                        @if (session()->get('lang') == 'english')
+                            Prayer Time
+                        @else
+                            مواقيت الصلاة
+                        @endif
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Fajr
+                                @else
+                                    الفجر
+                                @endif
+                            </th>
+                            <th>{{ $prayer->fajr }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Dhuhr
+                                @else
+                                    الظهر
+                                @endif
+                            </th>
+                            <th>{{ $prayer->dhuhr }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Asr
+                                @else
+                                    العصر
+                                @endif
+                            </th>
+                            <th>{{ $prayer->asr }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Maghrib
+                                @else
+                                    المغرب
+                                @endif
+                            </th>
+                            <th>{{ $prayer->maghrib }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Isha
+                                @else
+                                    العشاء
+                                @endif
+                            </th>
+                            <th>{{ $prayer->isha }}</th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @if (session()->get('lang') == 'english')
+                                    Jummah
+                                @else
+                                    الجمعة
+                                @endif
+                            </th>
+                            <th>{{ $prayer->jummah }}</th>
+                        </tr>
+                    </table>
                     <!-- Namaj Times -->
+
                     <div class="cetagory-title-03">Old News </div>
                     <form action="" method="post">
                         <div class="old-news-date">
@@ -568,40 +648,27 @@
                     </form>
                     <!-- news -->
                     <br><br><br><br><br>
-                    <div class="cetagory-title-04"> Important Website</div>
+                    <div class="cetagory-title-04">
+                        @if (session()->get('lang') == 'english')
+                            Important Website
+                        @else
+                            مواقع هامة
+                        @endif
+                    </div>
                     <div class="">
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved</a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
-                        <div class="news-title-02">
-                            <h4 class="heading-03"><a href="#"><i class="fa fa-check" aria-hidden="true"></i> Both
-                                    education and life must be saved </a> </h4>
-                        </div>
+                        @php
+                            $websitelink = DB::table('websites')->get();
+                        @endphp
+
+                        @foreach ($websitelink as $row)
+                            <div class="news-title-02">
+                                <h4 class="heading-03"><a href="{{ $row->website_link }}"><i class="fa fa-check"
+                                            aria-hidden="true"></i>
+                                        {{ $row->website_name }}</a> </h4>
+                            </div>
+                        @endforeach
+
+
                     </div>
 
                 </div>
@@ -675,8 +742,8 @@
                     </div>
 
                     <!--=======================================
-                                        Video Gallery clickable jquary  start
-                                    ========================================-->
+                                                                                                                                                                Video Gallery clickable jquary  start
+                                                                                                                                                            ========================================-->
 
                     <script>
                         var slideIndex = 1;
@@ -712,8 +779,8 @@
                     </script>
 
                     <!--=======================================
-                                        Video Gallery clickable  jquary  close
-                                    =========================================-->
+                                                                                                                                                                Video Gallery clickable  jquary  close
+                                                                                                                                                            =========================================-->
 
                 </div>
                 <div class="col-md-4 col-sm-5">

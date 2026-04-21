@@ -15,7 +15,8 @@ class CreateNoticesTable extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->text('notice')->nullable();
+            $table->text('notice_en')->nullable();
+            $table->text('notice_ar')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });
