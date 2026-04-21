@@ -751,61 +751,44 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8 col-sm-7">
-                    <div class="gallery_cetagory-title"> Photo Gallery </div>
+                    <div class="gallery_cetagory-title">
+                        @if (session()->get('lang') == 'english')
+                            Photo Gallery
+                        @else
+                            معرض الصور
+                        @endif
+                    </div>
+
+                    @php
+                        $photobig = DB::table('photos')->where('type', 1)->orderBy('id', 'desc')->first();
+                        $photosmall = DB::table('photos')->where('type', 0)->orderBy('id', 'desc')->limit(5)->get();
+                    @endphp
 
                     <div class="row">
                         <div class="col-md-8 col-sm-8">
                             <div class="photo_screen">
                                 <div class="myPhotos" style="width:100%">
-                                    <img src="assets/img/news.jpg" alt="Avatar">
+                                    <img src="{{ asset('images/photo_gallery/' . $photobig->photo) }}" alt="Avatar">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="photo_list_bg">
-
-                                <div class="photo_img photo_border active">
-                                    <img src="assets/img/news.jpg" alt="image" onclick="currentDiv(1)">
-                                    <div class="heading-03">
-                                        Casting of Israeli actress as Cleopatra sparks anger
+                                @foreach ($photosmall as $row)
+                                    <div class="photo_img photo_border active">
+                                        <img src="{{ asset('images/photo_gallery/' . $row->photo) }}" alt="image"
+                                            onclick="currentDiv(1)">
+                                        <div class="heading-03">
+                                            {{ $row->title }}
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="photo_img photo_border">
-                                    <img src="assets/img/news.jpg" alt="image" onclick="currentDiv(1)">
-                                    <div class="heading-03">
-                                        Casting of Israeli actress as Cleopatra sparks anger
-                                    </div>
-                                </div>
-
-                                <div class="photo_img photo_border">
-                                    <img src="assets/img/news.jpg" alt="image" onclick="currentDiv(1)">
-                                    <div class="heading-03">
-                                        Casting of Israeli actress as Cleopatra sparks anger
-                                    </div>
-                                </div>
-
-                                <div class="photo_img photo_border">
-                                    <img src="assets/img/news.jpg" alt="image" onclick="currentDiv(1)">
-                                    <div class="heading-03">
-                                        Casting of Israeli actress as Cleopatra sparks anger
-                                    </div>
-                                </div>
-
-                                <div class="photo_img photo_border">
-                                    <img src="assets/img/news.jpg" alt="image" onclick="currentDiv(1)">
-                                    <div class="heading-03">
-                                        Casting of Israeli actress as Cleopatra sparks anger
-                                    </div>
-                                </div>
+                                @endforeach
 
                             </div>
                         </div>
                     </div>
 
-                    <!--=======================================
-                                                                                                                                                                                                                                                                                                                                            Video Gallery clickable jquary  start
-                                                                                                                                                                                                                                                                                                                                        ========================================-->
+                    <!--==========================Video Gallery clickable jquary  start=========================-->
 
                     <script>
                         var slideIndex = 1;
@@ -840,24 +823,30 @@
                         }
                     </script>
 
-                    <!--=======================================
-                                                                                                                                                                                                                                                                                                                                            Video Gallery clickable  jquary  close
-                                                                                                                                                                                                                                                                                                                                        =========================================-->
+                    <!--============= Video Gallery clickable  jquary  close ===============-->
 
                 </div>
                 <div class="col-md-4 col-sm-5">
-                    <div class="gallery_cetagory-title"> photo Gallery </div>
+                    <div class="gallery_cetagory-title">
+                        @if (session()->get('lang') == 'english')
+                            Video Gallery
+                        @else
+                            معرض الفيديو
+                        @endif
+                    </div>
+
+                    @php
+                        $videobig = DB::table('videos')->where('type', 1)->orderBy('id', 'desc')->first();
+                        $videosamll = DB::table('videos')->where('type', 0)->orderBy('id', 'desc')->limit(2)->get();
+                    @endphp
+
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="video_screen">
                                 <div class="myVideos" style="width:100%">
                                     <div class="embed-responsive embed-responsive-16by9 embed-responsive-item">
-                                        <iframe width="853" height="480"
-                                            src="https://www.youtube.com/embed/AWM8164ksVY?list=RDAWM8164ksVY"
-                                            frameborder="0"
-                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
+                                        {!! $videobig->embed_code !!}
                                     </div>
                                 </div>
                             </div>
@@ -867,43 +856,14 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <div class="gallery_sec owl-carousel">
-
-                                <div class="video_image" style="width:100%" onclick="currentDivs(1)">
-                                    <img src="assets/img/news.jpg" alt="Avatar">
-                                    <div class="heading-03">
-                                        <div class="content_padding">
-                                            Kumar Sanu tests positive for coronavirus
+                            <div class="row">
+                                @foreach ($videosamll as $row)
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="embed-responsive embed-responsive-16by9 embed-responsive-item">
+                                            {!! $row->embed_code !!}
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="video_image" style="width:100%" onclick="currentDivs(1)">
-                                    <img src="assets/img/news.jpg" alt="Avatar">
-                                    <div class="heading-03">
-                                        <div class="content_padding">
-                                            Kumar Sanu tests positive for coronavirus
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="video_image" style="width:100%" onclick="currentDivs(1)">
-                                    <img src="assets/img/news.jpg" alt="Avatar">
-                                    <div class="heading-03">
-                                        <div class="content_padding">
-                                            Kumar Sanu tests positive for coronavirus
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="video_image" style="width:100%" onclick="currentDivs(1)">
-                                    <img src="assets/img/news.jpg" alt="Avatar">
-                                    <div class="heading-03">
-                                        <div class="content_padding">
-                                            Kumar Sanu tests positive for coronavirus
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
 
                             </div>
                         </div>
