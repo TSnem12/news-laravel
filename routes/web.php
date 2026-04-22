@@ -136,3 +136,4 @@ Route::get('/delete/video/{id}', [GalleryController::class, 'DeleteVideo'])->nam
 
 Route::get('/lang/arabic', [ExtraController::class, 'Arabic'])->name('lang.arabic');
 Route::get('/lang/english', [ExtraController::class, 'English'])->name('lang.english');
+Route::get('/view/post/{id}', [ExtraController::class, 'SinglePost']);

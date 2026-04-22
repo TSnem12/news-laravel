@@ -15,11 +15,12 @@
                         <div class="col-md-1 col-sm-1 col-lg-1"></div>
                         <div class="col-md-10 col-sm-10">
                             <div class="lead-news">
-                                <div class="service-img"><a href="#"><img
+                                <div class="service-img"><a href="{{ URL::to('view/post/' . $firstsectionbig->id) }}"><img
                                             src="{{ asset('images/post_image/' . $firstsectionbig->image) }}" width="800px"
                                             alt="Notebook"></a></div>
                                 <div class="content">
-                                    <h4 class="lead-heading-01"><a href="#">
+                                    <h4 class="lead-heading-01"><a
+                                            href="{{ URL::to('view/post/' . $firstsectionbig->id) }}">
                                             @if (session()->get('lang') == 'english')
                                                 {{ $firstsectionbig->title_en }}
                                             @else
@@ -35,9 +36,9 @@
                         @foreach ($firstsection as $row)
                             <div class="col-md-3 col-sm-3">
                                 <div class="top-news">
-                                    <a href="#"><img src="{{ asset('images/post_image/' . $row->image) }}"
-                                            alt="Notebook"></a>
-                                    <h4 class="heading-02"><a href="#">
+                                    <a href="{{ URL::to('view/post/' . $row->id) }}"><img
+                                            src="{{ asset('images/post_image/' . $row->image) }}" alt="Notebook"></a>
+                                    <h4 class="heading-02"><a href="{{ URL::to('view/post/' . $row->id) }}">
                                             @if (session()->get('lang') == 'english')
                                                 {{ $row->title_en }}
                                             @else
@@ -99,10 +100,11 @@
                                     <div class="col-md-6 col-sm-6">
                                         @if ($firstcatpostbig)
                                             <div class="top-news">
-                                                <a href="#"><img
+                                                <a href="{{ URL::to('view/post/' . $firstcatpostbig->id) }}"><img
                                                         src="{{ asset('images/post_image/' . $firstcatpostbig->image) }}"
                                                         alt="Notebook"></a>
-                                                <h4 class="heading-02"><a href="#">
+                                                <h4 class="heading-02"><a
+                                                        href="{{ URL::to('view/post/' . $firstcatpostbig->id) }}">
                                                         @if (session()->get('lang') == 'english')
                                                             {{ $firstcatpostbig->title_en }}
                                                         @else
@@ -116,10 +118,10 @@
                                     <div class="col-md-6 col-sm-6">
                                         @foreach ($firstcatpostsmall as $row)
                                             <div class="image-title">
-                                                <a href="#"><img
+                                                <a href="{{ URL::to('view/post/' . $row->id) }}"><img
                                                         src="{{ asset('images/post_image/' . $row->image) }}"
                                                         alt="Notebook"></a>
-                                                <h4 class="heading-03"><a href="#">
+                                                <h4 class="heading-03"><a href="{{ URL::to('view/post/' . $row->id) }}">
                                                         @if (session()->get('lang') == 'english')
                                                             {{ $row->title_en }}
                                                         @else
@@ -170,10 +172,11 @@
                                     <div class="col-md-6 col-sm-6">
                                         @if ($secondcatpostbig)
                                             <div class="top-news">
-                                                <a href="#"><img
+                                                <a href="{{ URL::to('view/post/' . $secondcatpostbig->id) }}"><img
                                                         src="{{ asset('images/post_image/' . $secondcatpostbig->image) }}"
                                                         alt="Notebook"></a>
-                                                <h4 class="heading-02"><a href="#">
+                                                <h4 class="heading-02"><a
+                                                        href="{{ URL::to('view/post/' . $secondcatpostbig->id) }}">
                                                         @if (session()->get('lang') == 'english')
                                                             {{ $secondcatpostbig->title_en }}
                                                         @else
@@ -187,10 +190,10 @@
                                     <div class="col-md-6 col-sm-6">
                                         @foreach ($secondcatpostsmall as $row)
                                             <div class="image-title">
-                                                <a href="#"><img
+                                                <a href="{{ URL::to('view/post/' . $row->id) }}"><img
                                                         src="{{ asset('images/post_image/' . $row->image) }}"
                                                         alt="Notebook"></a>
-                                                <h4 class="heading-03"><a href="#">
+                                                <h4 class="heading-03"><a href="{{ URL::to('view/post/' . $row->id) }}">
                                                         @if (session()->get('lang') == 'english')
                                                             {{ $row->title_en }}
                                                         @else
@@ -289,10 +292,10 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="top-news">
-                                    <a href="#"><img
+                                    <a href="{{ URL::to('view/post/' . $threecatpostbig->id) }}"><img
                                             src="{{ asset('images/post_image/' . $threecatpostbig->image) }}"
                                             alt="Notebook"></a>
-                                    <h4 class="heading-02"><a href="#">
+                                    <h4 class="heading-02"><a href="{{ URL::to('view/post/' . $threecatpostbig->id) }}">
                                             @if (session()->get('lang') == 'english')
                                                 {{ $threecatpostbig->title_en }}
                                             @else
@@ -304,9 +307,9 @@
                             <div class="col-md-6 col-sm-6">
                                 @foreach ($threecatpostsmall as $row)
                                     <div class="image-title">
-                                        <a href="#"><img src="{{ asset('images/post_image/' . $row->image) }}"
-                                                alt="Notebook"></a>
-                                        <h4 class="heading-03"><a href="#">
+                                        <a href="{{ URL::to('view/post/' . $row->id) }}"><img
+                                                src="{{ asset('images/post_image/' . $row->image) }}" alt="Notebook"></a>
+                                        <h4 class="heading-03"><a href="{{ URL::to('view/post/' . $row->id) }}">
                                                 @if (session()->get('lang') == 'english')
                                                     {{ $row->title_en }}
                                                 @else
@@ -359,10 +362,11 @@
 
                                 @if ($fourcatpostbig)
                                     <div class="top-news">
-                                        <a href="#"><img
+                                        <a href="{{ URL::to('view/post/' . $fourcatpostbig->id) }}"><img
                                                 src="{{ asset('images/post_image/' . $fourcatpostbig->image) }}"
                                                 alt="Notebook"></a>
-                                        <h4 class="heading-02"><a href="#">
+                                        <h4 class="heading-02"><a
+                                                href="{{ URL::to('view/post/' . $fourcatpostbig->id) }}">
                                                 @if (session()->get('lang') == 'english')
                                                     {{ $fourcatpostbig->title_en }}
                                                 @else
@@ -377,9 +381,9 @@
 
                                 @foreach ($fourcatpostsmall as $row)
                                     <div class="image-title">
-                                        <a href="#"><img src="{{ asset('images/post_image/' . $row->image) }}"
-                                                alt="Notebook"></a>
-                                        <h4 class="heading-03"><a href="#">
+                                        <a href="{{ URL::to('view/post/' . $row->id) }}"><img
+                                                src="{{ asset('images/post_image/' . $row->image) }}" alt="Notebook"></a>
+                                        <h4 class="heading-03"><a href="{{ URL::to('view/post/' . $row->id) }}">
                                                 @if (session()->get('lang') == 'english')
                                                     {{ $row->title_en }}
                                                 @else
@@ -501,121 +505,103 @@
                             </div>
                         </div>
                     </div><!-- /.add-close -->
-
-
                 </div>
+
+
+                @php
+                    $latest = DB::table('posts')->orderBy('id', 'desc')->limit(5)->get();
+                    $favourite = DB::table('posts')->inRandomOrder()->limit(5)->get();
+                    $highest = DB::table('posts')->inRandomOrder()->limit(5)->get();
+                @endphp
+
                 <div class="col-md-3 col-sm-3">
                     <div class="tab-header">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-justified" role="tablist">
                             <li role="presentation" class="active"><a href="#tab21" aria-controls="tab21"
-                                    role="tab" data-toggle="tab" aria-expanded="false">Latest</a></li>
+                                    role="tab" data-toggle="tab" aria-expanded="false">
+                                    @if (session()->get('lang') == 'english')
+                                        Latest
+                                    @else
+                                        الأحدث
+                                    @endif
+                                </a>
+                            </li>
                             <li role="presentation"><a href="#tab22" aria-controls="tab22" role="tab"
-                                    data-toggle="tab" aria-expanded="true">Popular</a></li>
+                                    data-toggle="tab" aria-expanded="true">
+                                    @if (session()->get('lang') == 'english')
+                                        Popular
+                                    @else
+                                        الشائع
+                                    @endif
+                                </a>
+                            </li>
                             <li role="presentation"><a href="#tab23" aria-controls="tab23" role="tab"
-                                    data-toggle="tab" aria-expanded="true">Popular1</a></li>
+                                    data-toggle="tab" aria-expanded="true">
+                                    @if (session()->get('lang') == 'english')
+                                        Highest
+                                    @else
+                                        الأعلى
+                                    @endif
+                                </a></li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content ">
                             <div role="tabpanel" class="tab-pane in active" id="tab21">
                                 <div class="news-titletab">
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
+
+                                    @foreach ($latest as $row)
+                                        <div class="news-title-02">
+                                            <h4 class="heading-03"><a href="#">
+                                                    @if (session()->get('lang') == 'english')
+                                                        {{ $row->title_en }}
+                                                    @else
+                                                        {{ $row->title_ar }}
+                                                    @endif
+                                                </a> </h4>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tab22">
                                 <div class="news-titletab">
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
+
+                                    @foreach ($favourite as $row)
+                                        <div class="news-title-02">
+                                            <h4 class="heading-03"><a href="#">
+                                                    @if (session()->get('lang') == 'english')
+                                                        {{ $row->title_en }}
+                                                    @else
+                                                        {{ $row->title_ar }}
+                                                    @endif
+                                                </a> </h4>
+                                        </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tab23">
                                 <div class="news-titletab">
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
-                                    <div class="news-title-02">
-                                        <h4 class="heading-03"><a href="#">Both education and life must be saved</a>
-                                        </h4>
-                                    </div>
+
+                                    @foreach ($highest as $row)
+                                        <div class="news-title-02">
+                                            <h4 class="heading-03"><a href="#">
+                                                    @if (session()->get('lang') == 'english')
+                                                        {{ $row->title_en }}
+                                                    @else
+                                                        {{ $row->title_ar }}
+                                                    @endif
+                                                </a> </h4>
+                                        </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
 
                     @php
                         $prayer = DB::table('prayers')->get()->first();
