@@ -33,7 +33,7 @@
                             <!-- Collection of nav links and other content for toggling -->
                             <div id="navbarCollapse" class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#">HOME</a></li>
+                                    <li><a href="{{ URL::to('/') }}">HOME</a></li>
 
 
                                     @foreach ($category as $row)
@@ -44,7 +44,7 @@
                                         @endphp
 
                                         <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <a href="{{ URL::to('catpost/' . $row->id . '/' . $row->category_en) }}">
                                                 @if (session()->get('lang') == 'arabic')
                                                     {{ $row->category_ar }}
                                                 @else
@@ -55,7 +55,8 @@
                                             <ul class="dropdown-menu">
 
                                                 @foreach ($subcategory as $sub)
-                                                    <li><a href="#">
+                                                    <li><a
+                                                            href="{{ URL::to('subcatpost/' . $sub->id . '/' . $sub->subcategory_en) }}">
                                                             @if (session()->get('lang') == 'arabic')
                                                                 {{ $sub->subcategory_ar }}
                                                             @else
