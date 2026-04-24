@@ -15,27 +15,53 @@ class UpdateNoticeColumnInNoticesTable extends Migration
     public function up(): void
     {
         Schema::table('notices', function (Blueprint $table) {
-            $table->text('notice_en')->nullable();
-            $table->text('notice_ar')->nullable();
+            if (!Schema::hasColumn('notices', 'notice_en')) {
+                $table->text('notice_en')->nullable();
+            }
+
+            if (!Schema::hasColumn('notices', 'notice_ar')) {
+                $table->text('notice_ar')->nullable();
+            }
         });
 
-        DB::statement('UPDATE notices SET notice_en = notice');
+        if (Schema::hasColumn('notices', 'notice')) {
+            DB::statement('UPDATE notices SET notice_en = notice');
+        }
 
         Schema::table('notices', function (Blueprint $table) {
-            $table->dropColumn('notice');
+            if (Schema::hasColumn('notices', 'notice')) {
+                $table->dropColumn('notice');
+            }
         });
     }
+
 
     public function down(): void
     {
         Schema::table('notices', function (Blueprint $table) {
-            $table->text('notice')->nullable();
+            if (!Schema::hasColumn('notices', 'notice')) {
+                $table->text('notice')->nullable();
+            }
         });
 
-        DB::statement('UPDATE notices SET notice = notice_en');
+        if (Schema::hasColumn('notices', 'notice_en')) {
+            DB::statement('UPDATE notices SET notice = notice_en');
+        }
 
         Schema::table('notices', function (Blueprint $table) {
-            $table->dropColumn(['notice_en', 'notice_ar']);
+            $columnsToDrop = [];
+
+            if (Schema::hasColumn('notices', 'notice_en')) {
+                $columnsToDrop[] = 'notice_en';
+            }
+
+            if (Schema::hasColumn('notices', 'notice_ar')) {
+                $columnsToDrop[] = 'notice_ar';
+            }
+
+            if (!empty($columnsToDrop)) {
+                $table->dropColumn($columnsToDrop);
+            }
         });
     }
 }
