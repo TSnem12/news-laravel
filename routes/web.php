@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\AdsController;
 use App\Http\Controllers\Frontend\ExtraController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
 
@@ -138,6 +139,17 @@ Route::post('/store/video', [GalleryController::class, 'StoreVideo'])->name('sto
 Route::get('/edit/video/{id}', [GalleryController::class, 'EditVideo'])->name('edit.video');
 Route::post('/update/video/{id}', [GalleryController::class, 'UpdateVideo'])->name('update.video');
 Route::get('/delete/video/{id}', [GalleryController::class, 'DeleteVideo'])->name('delete.video');
+
+
+// Ads Backend Section Route
+Route::get('/list/ads', [AdsController::class, 'ListAds'])->name('list.ads');
+Route::get('/add/ads', [AdsController::class, 'AddAds'])->name('add.ads');
+Route::post('/store/ads', [AdsController::class, 'StoreAds'])->name('store.ads');
+Route::get('/edit/ads/{id}', [AdsController::class, 'EditAds'])->name('edit.ads');
+Route::post('/update/ads/{id}', [AdsController::class, 'UpdateAds'])->name('update.ads');
+Route::get('/delete/ads/{id}', [AdsController::class, 'DeleteAds'])->name('delete.ads');
+
+
 
 
 
