@@ -233,11 +233,7 @@
                         </div><!-- /.youtube-live-close -->
                     @endif
 
-                    <!-- facebook-page-start -->
-                    <div class="cetagory-title-03">Facebook </div>
-                    <div class="fb-root">
-                        facebook page here
-                    </div><!-- /.facebook-page-close -->
+
 
                     <!-- add-start -->
                     <div class="row">

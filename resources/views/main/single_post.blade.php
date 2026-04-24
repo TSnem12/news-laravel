@@ -81,6 +81,13 @@
 
                         <br><br>
 
+
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0"
+                            nonce="ClFC86MV"></script>
+
+                        <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="8" data-width=""></div>
+
                         @php
                             $more = DB::table('posts')
                                 ->where('category_id', $posts->category_id)
