@@ -8,9 +8,13 @@ use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
+
 use App\Http\Controllers\Backend\GalleryController;
 
 use App\Http\Controllers\Frontend\ExtraController;
+
+use App\Http\Controllers\Backend\WebsiteSettingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,12 +111,20 @@ Route::post('/update/notice/{id}', [SettingController::class, 'UpdateNotice'])->
 Route::get('/active/notice/{id}', [SettingController::class, 'ActiveNotice'])->name('active.notice');
 Route::get('/deactive/notice/{id}', [SettingController::class, 'DeActiveNotice'])->name('deactive.notice');
 
+
+// All Website Setting Routes 
+Route::get('/web/setting', [WebsiteSettingController::class, 'MainWebSetting'])->name('website.setting');
+Route::post('/update/websetting/{id}', [WebsiteSettingController::class, 'UpdateWebSetting'])->name('update.websetting');
+
+
+
 Route::get('/website/setting', [SettingController::class, 'WebsiteSetting'])->name('all.website');
 Route::get('/add/website', [SettingController::class, 'AddWebsiteSetting'])->name('add.website');
 Route::post('/store/website', [SettingController::class, 'StoreWebsite'])->name('store.website');
 Route::get('/edit/website/{id}', [SettingController::class, 'EditWebsite'])->name('edit.website');
 Route::post('/update/website/{id}', [SettingController::class, 'UpdateWebsite'])->name('update.website');
 Route::get('/delete/website/{id}', [SettingController::class, 'DeleteWebsite'])->name('delete.website');
+
 
 
 // All Photos Gallery Routes 
