@@ -1,7 +1,11 @@
 @php
     $category = DB::table('categories')->orderBy('id', 'ASC')->get();
     $social = DB::table('socials')->first();
+
+    $websitesetting = DB::table('websitesettings')->first();
+
     $horizontal = DB::table('ads')->where('type', 2)->first();
+
 @endphp
 
 
@@ -14,7 +18,7 @@
         <div class="row">
             <div class="col-xs-6 col-md-2 col-sm-4">
                 <div class="header_logo">
-                    <a href=""><img src="{{ asset('frontend/assets/img/demo_logo.png') }}"></a>
+                    <a href=""><img src="{{ asset('images/logo/' . $websitesetting->logo) }}"></a>
                 </div>
             </div>
             <div class="col-xs-6 col-md-8 col-sm-8">

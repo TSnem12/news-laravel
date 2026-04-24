@@ -11,8 +11,9 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\AdsController;
-
 use App\Http\Controllers\Frontend\ExtraController;
+use App\Http\Controllers\Backend\WebsiteSettingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,7 @@ Route::post('/store/website', [SettingController::class, 'StoreWebsite'])->name(
 Route::get('/edit/website/{id}', [SettingController::class, 'EditWebsite'])->name('edit.website');
 Route::post('/update/website/{id}', [SettingController::class, 'UpdateWebsite'])->name('update.website');
 Route::get('/delete/website/{id}', [SettingController::class, 'DeleteWebsite'])->name('delete.website');
+
 
 
 // All Photos Gallery Routes 
