@@ -55,7 +55,11 @@
                     <!-- add-start -->
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <div class="add"><img src="assets/img/top-ad.jpg" alt="" /></div>
+
+                            <div class="add">
+
+
+                            </div>
                         </div>
                     </div><!-- /.add-close -->
 
@@ -214,7 +218,18 @@
                     <!-- add-start -->
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <div class="sidebar-add"><img src="assets/img/add_01.jpg" alt="" /></div>
+
+                            @php
+                                $vertical = DB::table('ads')->where('type', 1)->first();
+                            @endphp
+
+                            <div class="sidebar-add">
+                                @if ($vertical == null)
+                                @else
+                                    <a href="{{ $vertical->link }}" target="_blank"><img
+                                            src=" {{ asset('images/ads/' . $vertical->ads) }}" alt="" /></a>
+                                @endif
+                            </div>
                         </div>
                     </div><!-- /.add-close -->
 
@@ -233,17 +248,21 @@
                         </div><!-- /.youtube-live-close -->
                     @endif
 
-                    <!-- facebook-page-start -->
-                    <div class="cetagory-title-03">Facebook </div>
-                    <div class="fb-root">
-                        facebook page here
-                    </div><!-- /.facebook-page-close -->
 
                     <!-- add-start -->
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
+
+                            @php
+                                $vertical = DB::table('ads')->where('type', 1)->skip(1)->first();
+                            @endphp
+
                             <div class="sidebar-add">
-                                <img src="assets/img/add_01.jpg" alt="" />
+                                @if ($vertical == null)
+                                @else
+                                    <a href="{{ $vertical->link }}" target="_blank"><img
+                                            src=" {{ asset('images/ads/' . $vertical->ads) }}" alt="" /></a>
+                                @endif
                             </div>
                         </div>
                     </div><!-- /.add-close -->
