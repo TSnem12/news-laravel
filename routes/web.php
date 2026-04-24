@@ -8,11 +8,8 @@ use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
-
 use App\Http\Controllers\Backend\GalleryController;
-
 use App\Http\Controllers\Frontend\ExtraController;
-
 use App\Http\Controllers\Backend\WebsiteSettingController;
 
 
