@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\AdsController;
 
@@ -107,6 +108,13 @@ Route::get('/notice/setting/', [SettingController::class, 'NoticeSetting'])->nam
 Route::post('/update/notice/{id}', [SettingController::class, 'UpdateNotice'])->name('update.notice');
 Route::get('/active/notice/{id}', [SettingController::class, 'ActiveNotice'])->name('active.notice');
 Route::get('/deactive/notice/{id}', [SettingController::class, 'DeActiveNotice'])->name('deactive.notice');
+
+
+// All Website Setting Routes 
+Route::get('/web/setting', [WebsiteSettingController::class, 'MainWebSetting'])->name('website.setting');
+Route::post('/update/websetting/{id}', [WebsiteSettingController::class, 'UpdateWebSetting'])->name('update.websetting');
+
+
 
 Route::get('/website/setting', [SettingController::class, 'WebsiteSetting'])->name('all.website');
 Route::get('/add/website', [SettingController::class, 'AddWebsiteSetting'])->name('add.website');
