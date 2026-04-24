@@ -48,201 +48,190 @@
 
                             </div>
                             <div class="col-md-6 col-sm-6 pull-right">
-                                <ul class="social-nav">
-                                    <li><a href=""
-                                            onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('#'),'facebook-share-dialog','width=626,height=436'); return false;"
-                                            target="_blank" title="Facebook" rel="nofollow" class="facebook"><i
-                                                class="fa fa-facebook"></i></a></li>
-                                    <li><a target="_blank" href=""
-                                            onclick="javascript:window.open('https://twitter.com/share?text=‘#'); return false;"
-                                            title="Twitter" rel="nofollow" class="twitter"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a target="_blank" href=""
-                                            onclick="window.open('https://plus.google.com/share?url=#'); return false;"
-                                            title="Google plus" rel="nofollow" class="google"><i
-                                                class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#" target="_blank" title="Print" rel="nofollow" class="print"><i
-                                                class="fa fa-print"></i></a></li>
 
-                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ******** -->
-            <div class="row">
-                <div class="col-md-8 col-sm-8">
-                    <div class="single-news">
-                        <img src="{{ asset('images/post_image/' . $posts->image) }}" alt="" />
-                        <h4 class="caption">
-                            @if (session()->get('lang') == 'english')
-                                {{ $posts->title_en }}
-                            @else
-                                {{ $posts->title_ar }}
-                            @endif
-                        </h4>
-                        <p>
-                            @if (session()->get('lang') == 'english')
-                                {!! $posts->details_en !!}
-                            @else
-                                {!! $posts->details_ar !!}
-                            @endif
-                        </p>
-                    </div>
-                    <!-- ********* -->
-
-                    @php
-                        $more = DB::table('posts')
-                            ->where('category_id', $posts->category_id)
-                            ->orderBy('id', 'desc')
-                            ->get();
-                    @endphp
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="heading">
+                <!-- ******** -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="single-news">
+                            <img src="{{ asset('images/post_image/' . $posts->image) }}" alt="" />
+                            <h4 class="caption">
                                 @if (session()->get('lang') == 'english')
-                                    Related News
+                                    {{ $posts->title_en }}
                                 @else
-                                    أخبار ذات صلة
+                                    {{ $posts->title_ar }}
                                 @endif
-                            </h2>
+                            </h4>
+                            <p>
+                                @if (session()->get('lang') == 'english')
+                                    {!! $posts->details_en !!}
+                                @else
+                                    {!! $posts->details_ar !!}
+                                @endif
+                            </p>
+                        </div>
+                        <!-- ********* -->
+                        <br><br>
+
+                        <div class="sharethis-share-buttons" data-type="inline-share-buttons">
                         </div>
 
-                        @foreach ($more as $item)
-                            <div class="col-md-4 col-sm-4" style="height: 200px;">
-                                <div class="top-news sng-border-btm">
-                                    <a href="#"><img src="{{ asset('images/post_image/' . $item->image) }}"
-                                            alt="Notebook"></a>
-                                    <h4 class="heading-02"><a href="{{ URL::to('view/post/' . $item->id) }}">
-                                            @if (session()->get('lang') == 'english')
-                                                {{ $item->title_en }}
-                                            @else
-                                                {{ $item->title_ar }}
-                                            @endif
-                                        </a>
-                                    </h4>
+                        <br><br>
+
+                        @php
+                            $more = DB::table('posts')
+                                ->where('category_id', $posts->category_id)
+                                ->orderBy('id', 'desc')
+                                ->get();
+                        @endphp
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="heading">
+                                    @if (session()->get('lang') == 'english')
+                                        Related News
+                                    @else
+                                        أخبار ذات صلة
+                                    @endif
+                                </h2>
+                            </div>
+
+                            @foreach ($more as $item)
+                                <div class="col-md-4 col-sm-4" style="height: 200px;">
+                                    <div class="top-news sng-border-btm">
+                                        <a href="#"><img src="{{ asset('images/post_image/' . $item->image) }}"
+                                                alt="Notebook"></a>
+                                        <h4 class="heading-02"><a href="{{ URL::to('view/post/' . $item->id) }}">
+                                                @if (session()->get('lang') == 'english')
+                                                    {{ $item->title_en }}
+                                                @else
+                                                    {{ $item->title_ar }}
+                                                @endif
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <!-- add-start -->
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="sidebar-add"><img src="{{ asset('frontend/assets/img/add_01.jpg') }}"
+                                        alt="" /></div>
+                            </div>
+                        </div><!-- /.add-close -->
+
+
+                        @php
+                            $latest = DB::table('posts')->orderBy('id', 'desc')->limit(5)->get();
+                            $favourite = DB::table('posts')->orderBy('id', 'desc')->inRandomOrder()->limit(5)->get();
+                            $highest = DB::table('posts')->orderBy('id', 'asc')->inRandomOrder()->limit(5)->get();
+                        @endphp
+
+                        <div class="tab-header">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab21" aria-controls="tab21"
+                                        role="tab" data-toggle="tab" aria-expanded="false">
+                                        @if (session()->get('lang') == 'english')
+                                            Latest
+                                        @else
+                                            الأحدث
+                                        @endif
+                                    </a>
+                                </li>
+                                <li role="presentation"><a href="#tab22" aria-controls="tab22" role="tab"
+                                        data-toggle="tab" aria-expanded="true">
+                                        @if (session()->get('lang') == 'english')
+                                            Popular
+                                        @else
+                                            الشائع
+                                        @endif
+                                    </a>
+                                </li>
+                                <li role="presentation"><a href="#tab23" aria-controls="tab23" role="tab"
+                                        data-toggle="tab" aria-expanded="true">
+                                        @if (session()->get('lang') == 'english')
+                                            Highest
+                                        @else
+                                            الأعلى
+                                        @endif
+                                    </a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content ">
+                                <div role="tabpanel" class="tab-pane in active" id="tab21">
+                                    <div class="news-titletab">
+
+                                        @foreach ($latest as $row)
+                                            <div class="news-title-02">
+                                                <h4 class="heading-03"><a href="#">
+                                                        @if (session()->get('lang') == 'english')
+                                                            {{ $row->title_en }}
+                                                        @else
+                                                            {{ $row->title_ar }}
+                                                        @endif
+                                                    </a> </h4>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab22">
+                                    <div class="news-titletab">
+
+                                        @foreach ($favourite as $row)
+                                            <div class="news-title-02">
+                                                <h4 class="heading-03"><a href="#">
+                                                        @if (session()->get('lang') == 'english')
+                                                            {{ $row->title_en }}
+                                                        @else
+                                                            {{ $row->title_ar }}
+                                                        @endif
+                                                    </a> </h4>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab23">
+                                    <div class="news-titletab">
+
+                                        @foreach ($highest as $row)
+                                            <div class="news-title-02">
+                                                <h4 class="heading-03"><a href="#">
+                                                        @if (session()->get('lang') == 'english')
+                                                            {{ $row->title_en }}
+                                                        @else
+                                                            {{ $row->title_ar }}
+                                                        @endif
+                                                    </a> </h4>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
 
                     </div>
-
-
-
-                </div>
-                <div class="col-md-4 col-sm-4">
                     <!-- add-start -->
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <div class="sidebar-add"><img src="{{ asset('frontend/assets/img/add_01.jpg') }}"
-                                    alt="" /></div>
+                            <div class="sidebar-add"><img src="assets/img/add_01.jpg" alt="" /></div>
                         </div>
                     </div><!-- /.add-close -->
-
-
-                    @php
-                        $latest = DB::table('posts')->orderBy('id', 'desc')->limit(5)->get();
-                        $favourite = DB::table('posts')->orderBy('id', 'desc')->inRandomOrder()->limit(5)->get();
-                        $highest = DB::table('posts')->orderBy('id', 'asc')->inRandomOrder()->limit(5)->get();
-                    @endphp
-
-                    <div class="tab-header">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs nav-justified" role="tablist">
-                            <li role="presentation" class="active"><a href="#tab21" aria-controls="tab21" role="tab"
-                                    data-toggle="tab" aria-expanded="false">
-                                    @if (session()->get('lang') == 'english')
-                                        Latest
-                                    @else
-                                        الأحدث
-                                    @endif
-                                </a>
-                            </li>
-                            <li role="presentation"><a href="#tab22" aria-controls="tab22" role="tab" data-toggle="tab"
-                                    aria-expanded="true">
-                                    @if (session()->get('lang') == 'english')
-                                        Popular
-                                    @else
-                                        الشائع
-                                    @endif
-                                </a>
-                            </li>
-                            <li role="presentation"><a href="#tab23" aria-controls="tab23" role="tab" data-toggle="tab"
-                                    aria-expanded="true">
-                                    @if (session()->get('lang') == 'english')
-                                        Highest
-                                    @else
-                                        الأعلى
-                                    @endif
-                                </a></li>
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content ">
-                            <div role="tabpanel" class="tab-pane in active" id="tab21">
-                                <div class="news-titletab">
-
-                                    @foreach ($latest as $row)
-                                        <div class="news-title-02">
-                                            <h4 class="heading-03"><a href="#">
-                                                    @if (session()->get('lang') == 'english')
-                                                        {{ $row->title_en }}
-                                                    @else
-                                                        {{ $row->title_ar }}
-                                                    @endif
-                                                </a> </h4>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab22">
-                                <div class="news-titletab">
-
-                                    @foreach ($favourite as $row)
-                                        <div class="news-title-02">
-                                            <h4 class="heading-03"><a href="#">
-                                                    @if (session()->get('lang') == 'english')
-                                                        {{ $row->title_en }}
-                                                    @else
-                                                        {{ $row->title_ar }}
-                                                    @endif
-                                                </a> </h4>
-                                        </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab23">
-                                <div class="news-titletab">
-
-                                    @foreach ($highest as $row)
-                                        <div class="news-title-02">
-                                            <h4 class="heading-03"><a href="#">
-                                                    @if (session()->get('lang') == 'english')
-                                                        {{ $row->title_en }}
-                                                    @else
-                                                        {{ $row->title_ar }}
-                                                    @endif
-                                                </a> </h4>
-                                        </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- add-start -->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="sidebar-add"><img src="assets/img/add_01.jpg" alt="" /></div>
-                    </div>
-                </div><!-- /.add-close -->
             </div>
-        </div>
         </div>
     </section>
 @endsection
