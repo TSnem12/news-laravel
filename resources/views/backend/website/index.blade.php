@@ -75,7 +75,9 @@
 
                             </tbody>
                         </table>
-                        {{ $websites->links('pagination-links') }}
+                        <div class="pagination justify-content-center" style="margin-top: 20px;">
+                            {{ $websites->links('pagination-links') }}
+                        </div>
                     </div>
                 </div>
             </div>

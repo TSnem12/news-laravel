@@ -53,14 +53,22 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="exampleTextarea1">Notice</label>
-                            <textarea class="form-control" name="notice" id="summernote">
+                            <label for="exampleTextarea1">Notice English</label>
+                            <textarea class="form-control" name="notice_en" id="summernote">
                                 
-                                {{ $notice->notice }}
+                                {{ $notice->notice_en }}
 
                             </textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Notice Arabic</label>
+                            <textarea class="form-control" name="notice_ar" id="summernote">
+                                
+                                {{ $notice->notice_ar }}
+
+                            </textarea>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary mr-2">Update</button>

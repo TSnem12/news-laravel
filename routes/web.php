@@ -9,6 +9,10 @@ use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
+use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\AdsController;
+
+use App\Http\Controllers\Frontend\ExtraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +26,7 @@ use App\Http\Controllers\Backend\WebsiteSettingController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.home');
 });
 
 Route::middleware([
@@ -118,3 +122,42 @@ Route::post('/store/website', [SettingController::class, 'StoreWebsite'])->name(
 Route::get('/edit/website/{id}', [SettingController::class, 'EditWebsite'])->name('edit.website');
 Route::post('/update/website/{id}', [SettingController::class, 'UpdateWebsite'])->name('update.website');
 Route::get('/delete/website/{id}', [SettingController::class, 'DeleteWebsite'])->name('delete.website');
+
+
+// All Photos Gallery Routes 
+Route::get('/photo/gallery', [GalleryController::class, 'PhotoGallery'])->name('photo.gallery');
+Route::get('/add/photo', [GalleryController::class, 'AddPhoto'])->name('add.photo');
+Route::post('/store/photo', [GalleryController::class, 'StorePhoto'])->name('store.photo');
+Route::get('/edit/photo/{id}', [GalleryController::class, 'EditPhoto'])->name('edit.photo');
+Route::post('/update/photo/{id}', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
+Route::get('/delete/photo/{id}', [GalleryController::class, 'DeletePhoto'])->name('delete.photo');
+
+Route::get('/video/gallery', [GalleryController::class, 'VideoGallery'])->name('video.gallery');
+Route::get('/add/video', [GalleryController::class, 'AddVideo'])->name('add.video');
+Route::post('/store/video', [GalleryController::class, 'StoreVideo'])->name('store.video');
+Route::get('/edit/video/{id}', [GalleryController::class, 'EditVideo'])->name('edit.video');
+Route::post('/update/video/{id}', [GalleryController::class, 'UpdateVideo'])->name('update.video');
+Route::get('/delete/video/{id}', [GalleryController::class, 'DeleteVideo'])->name('delete.video');
+
+
+// Ads Backend Section Route
+Route::get('/list/ads', [AdsController::class, 'ListAds'])->name('list.ads');
+Route::get('/add/ads', [AdsController::class, 'AddAds'])->name('add.ads');
+Route::post('/store/ads', [AdsController::class, 'StoreAds'])->name('store.ads');
+Route::get('/edit/ads/{id}', [AdsController::class, 'EditAds'])->name('edit.ads');
+Route::post('/update/ads/{id}', [AdsController::class, 'UpdateAds'])->name('update.ads');
+Route::get('/delete/ads/{id}', [AdsController::class, 'DeleteAds'])->name('delete.ads');
+
+
+
+
+
+//Frontend
+
+Route::get('/lang/arabic', [ExtraController::class, 'Arabic'])->name('lang.arabic');
+Route::get('/lang/english', [ExtraController::class, 'English'])->name('lang.english');
+Route::get('/view/post/{id}', [ExtraController::class, 'SinglePost']);
+Route::get('catpost/{id}/{category_en}', [ExtraController::class, 'CatPost']);
+Route::get('subcatpost/{id}/{subcategory_en}', [ExtraController::class, 'SubCatPost']);
+Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'GetSubDist']);
+Route::get('/search/district', [ExtraController::class, 'SearchDistrict'])->name('searchby.districts');
