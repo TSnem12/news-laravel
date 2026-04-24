@@ -144,6 +144,8 @@
 
                     <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}">Notice
                             Settings</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('website.setting') }}">Website Settings
+                        </a></li>
                 </ul>
             </div>
         </li>

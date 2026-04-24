@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\SubdistrictController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\WebsiteSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,19 +99,22 @@ Route::get('/livetv/setting/', [SettingController::class, 'LivetvSetting'])->nam
 Route::post('/update/livetv/{id}', [SettingController::class, 'UpdateLivetv'])->name('update.livetv');
 Route::get('/active/livetv/{id}', [SettingController::class, 'ActiveLivetv'])->name('active.livetv');
 Route::get('/deactive/livetv/{id}', [SettingController::class, 'DeActiveLivetv'])->name('deactive.livetv');
- 
+
 Route::get('/notice/setting/', [SettingController::class, 'NoticeSetting'])->name('notice.setting');
 Route::post('/update/notice/{id}', [SettingController::class, 'UpdateNotice'])->name('update.notice');
 Route::get('/active/notice/{id}', [SettingController::class, 'ActiveNotice'])->name('active.notice');
 Route::get('/deactive/notice/{id}', [SettingController::class, 'DeActiveNotice'])->name('deactive.notice');
- 
+
+
+// All Website Setting Routes 
+Route::get('/web/setting', [WebsiteSettingController::class, 'MainWebSetting'])->name('website.setting');
+Route::post('/update/websetting/{id}', [WebsiteSettingController::class, 'UpdateWebSetting'])->name('update.websetting');
+
+
+
 Route::get('/website/setting', [SettingController::class, 'WebsiteSetting'])->name('all.website');
 Route::get('/add/website', [SettingController::class, 'AddWebsiteSetting'])->name('add.website');
 Route::post('/store/website', [SettingController::class, 'StoreWebsite'])->name('store.website');
 Route::get('/edit/website/{id}', [SettingController::class, 'EditWebsite'])->name('edit.website');
 Route::post('/update/website/{id}', [SettingController::class, 'UpdateWebsite'])->name('update.website');
 Route::get('/delete/website/{id}', [SettingController::class, 'DeleteWebsite'])->name('delete.website');
-
- 
-
-
