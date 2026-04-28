@@ -10,8 +10,11 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\AdsController;
-use App\Http\Controllers\Frontend\ExtraController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
+
+use App\Http\Controllers\Frontend\ExtraController;
+
 
 
 /*
@@ -150,7 +153,13 @@ Route::post('/update/ads/{id}', [AdsController::class, 'UpdateAds'])->name('upda
 Route::get('/delete/ads/{id}', [AdsController::class, 'DeleteAds'])->name('delete.ads');
 
 
+// Writer Role Routes
 
+Route::get('/add/writer', [RoleController::class, 'InsertWriter'])->name('add.writer');
+Route::post('/store/writer', [RoleController::class, 'StoreWriter'])->name('store.writer');
+Route::get('/all/writer', [RoleController::class, 'AllWriter'])->name('all.writer');
+Route::get('/edit/writer/{id}', [RoleController::class, 'EditWriter'])->name('edit.writer');
+Route::post('/update/writer/{id}', [RoleController::class, 'UpdateWriter'])->name('update.writer');
 
 
 //Frontend

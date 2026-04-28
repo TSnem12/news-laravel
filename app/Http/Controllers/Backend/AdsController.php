@@ -10,6 +10,14 @@ use Intervention\Image\Facades\Image;
 
 class AdsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+
     public function ListAds()
     {
         $ads = DB::table('ads')->orderBy('id', 'desc')->get();
