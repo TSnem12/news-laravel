@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class GalleryController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+
+
     //Photos Functions
 
     public function PhotoGallery()

@@ -61,173 +61,216 @@
             <span class="nav-link">Navigation</span>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ route('dashboard') }}">
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
-                </span>
-                <span class="menu-title">Categories</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('subcategories') }}">SubCategories</a></li>
-
-                </ul>
-            </div>
-        </li>
-
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
-                </span>
-                <span class="menu-title">District</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('districts') }}">District</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('subdistricts') }}">SubDistrict</a></li>
-
-                </ul>
-            </div>
-        </li>
 
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
-                </span>
-                <span class="menu-title">Post</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('add.post') }}">Add Post</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('posts') }}">All Posts</a></li>
+        @if (Auth::user()->category == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop"></i>
+                    </span>
+                    <span class="menu-title">Categories</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('subcategories') }}">SubCategories</a>
+                        </li>
 
-                </ul>
-            </div>
-        </li>
-
-
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false"
-                aria-controls="setting">
-                <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
-                <span class="menu-title">Settings</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="setting">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('social.setting') }}">Social
-                            Settings</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('seo.setting') }}">Seo Settings</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}">Prayer
-                            Settings</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}">LiveTv
-                            Settings</a></li>
-
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}">Notice
-                            Settings</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('website.setting') }}">Website Settings
-                        </a></li>
-                </ul>
-            </div>
-        </li>
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
 
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false"
-                aria-controls="website">
-                <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
-                <span class="menu-title">Website</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="website">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('add.website') }}">Add Website Link</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('all.website') }}">All Website
-                            Links</a></li>
+        @if (Auth::user()->district == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop"></i>
+                    </span>
+                    <span class="menu-title">District</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('districts') }}">District</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('subdistricts') }}">SubDistrict</a>
+                        </li>
 
-                </ul>
-            </div>
-        </li>
-
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="photo">
-                <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
-                <span class="menu-title">Gallery</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="photo">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('photo.gallery') }}">Photo Gallery</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('video.gallery') }}">Video Gallery</a>
-                    </li>
-
-                </ul>
-            </div>
-        </li>
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
 
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ads" aria-expanded="false" aria-controls="ads">
-                <span class="menu-icon">
-                    <i class="mdi mdi-security"></i>
-                </span>
-                <span class="menu-title">Advertisement</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ads">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('list.ads') }}">Ads List </a></li>
+        @if (Auth::user()->post == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-laptop"></i>
+                    </span>
+                    <span class="menu-title">Post</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('add.post') }}">Add Post</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('posts') }}">All Posts</a></li>
 
-                </ul>
-            </div>
-        </li>
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
 
 
+        @if (Auth::user()->setting == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false"
+                    aria-controls="setting">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-playlist-play"></i>
+                    </span>
+                    <span class="menu-title">Settings</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="setting">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('social.setting') }}">Social
+                                Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('seo.setting') }}">Seo
+                                Settings</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('prayer.setting') }}">Prayer
+                                Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('livetv.setting') }}">LiveTv
+                                Settings</a></li>
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <span class="menu-icon">
-                    <i class="mdi mdi-security"></i>
-                </span>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                </ul>
-            </div>
-        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('notice.setting') }}">Notice
+                                Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('website.setting') }}">Website
+                                Settings
+                            </a></li>
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
+
+
+        @if (Auth::user()->website == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false"
+                    aria-controls="website">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-playlist-play"></i>
+                    </span>
+                    <span class="menu-title">Website</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="website">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('add.website') }}">Add
+                                Website Link</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('all.website') }}">All
+                                Website
+                                Links</a></li>
+
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
+
+
+        @if (Auth::user()->gallery == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false"
+                    aria-controls="photo">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-playlist-play"></i>
+                    </span>
+                    <span class="menu-title">Gallery</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="photo">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('photo.gallery') }}">Photo
+                                Gallery</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('video.gallery') }}">Video
+                                Gallery</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
+
+
+        @if (Auth::user()->ads == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ads" aria-expanded="false"
+                    aria-controls="ads">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-security"></i>
+                    </span>
+                    <span class="menu-title">Advertisement</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ads">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('list.ads') }}">Ads
+                                List </a></li>
+
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
+
+
+        @if (Auth::user()->role == 1)
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                    aria-controls="auth">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-security"></i>
+                    </span>
+                    <span class="menu-title">User Roles</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('add.writer') }}">
+                                Add Writer </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('all.writer') }}">
+                                All Writer </a></li>
+
+                    </ul>
+                </div>
+            </li>
+        @else
+        @endif
+
+
         <li class="nav-item menu-items">
             <a class="nav-link"
                 href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">

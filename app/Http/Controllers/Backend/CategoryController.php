@@ -8,17 +8,27 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function index() {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    public function index()
+    {
         $categories = DB::table('categories')->orderBy('id', 'desc')->paginate(3);
         return view('backend.category.index', compact('categories'));
     }
 
 
-    public function create() {
+    public function create()
+    {
         return view('backend.category.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $validateData = $request->validate([
             'category_en' => 'required|unique:categories|max:225',
             'category_ar' => 'required|unique:categories|max:225',
@@ -35,15 +45,16 @@ class CategoryController extends Controller
         );
 
         return redirect()->route('categories')->with($notification);
-
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $category = DB::table('categories')->where('id', $id)->first();
         return view('backend.category.edit', compact('category'));
     }
 
-    public function update(Request  $request, $id) {
+    public function update(Request  $request, $id)
+    {
 
         DB::table('categories')->where('id', $id)->update([
             'category_en' => $request->category_en,
@@ -58,7 +69,8 @@ class CategoryController extends Controller
         return redirect()->route('categories')->with($notification);
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         DB::table('categories')->where('id', $id)->delete();
 
         $notification = array(
@@ -68,5 +80,4 @@ class CategoryController extends Controller
 
         return redirect()->route('categories')->with($notification);
     }
-
 }
