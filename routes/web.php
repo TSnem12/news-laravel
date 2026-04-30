@@ -171,3 +171,13 @@ Route::get('catpost/{id}/{category_en}', [ExtraController::class, 'CatPost']);
 Route::get('subcatpost/{id}/{subcategory_en}', [ExtraController::class, 'SubCatPost']);
 Route::get('/get/subdistrict/frontend/{district_id}', [ExtraController::class, 'GetSubDist']);
 Route::get('/search/district', [ExtraController::class, 'SearchDistrict'])->name('searchby.districts');
+
+
+// Account Setting Routes 
+Route::get('/account/setting', [AdminController::class, 'AccountSetting'])->name('account.setting');
+Route::get('/profile/edit', [AdminController::class, 'ProfileEdit'])->name('profile.edit');
+Route::post('/profile/store', [AdminController::class, 'ProfileStore'])->name('profile.store');
+
+/// Change Password 
+Route::get('/show/password', [AdminController::class, 'ShowPassword'])->name('show.password');
+Route::post('/change/password', [AdminController::class, 'ChangePassword'])->name('change.password');
